@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e85e5cd9-9e3a-41eb-971b-c7500f87808b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/PlayerPreview.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Loading.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Battle.js" afterPath="$PROJECT_DIR$/src/components/Battle.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Popular.js" afterPath="$PROJECT_DIR$/src/components/Popular.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Results.js" afterPath="$PROJECT_DIR$/src/components/Results.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/api.js" afterPath="$PROJECT_DIR$/src/utils/api.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,21 +26,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/utils/api.js">
+      <file leaf-file-name="Popular.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Popular.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="54" column="12" lean-forward="false" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
-              <folding />
+            <state relative-caret-position="537">
+              <caret line="124" column="30" lean-forward="false" selection-start-line="124" selection-start-column="30" selection-end-line="124" selection-end-column="30" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#44#83#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Results.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Results.js">
+      <file leaf-file-name="Loading.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Loading.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-438">
-              <caret line="61" column="83" lean-forward="true" selection-start-line="61" selection-start-column="83" selection-end-line="61" selection-end-column="83" />
+            <state relative-caret-position="192">
+              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding>
                 <element signature="e#44#83#0" expanded="true" />
               </folding>
@@ -51,23 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerPreview.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/PlayerPreview.js">
+      <file leaf-file-name="Results.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Results.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding>
-                <element signature="e#44#70#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Battle.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Battle.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="111" column="51" lean-forward="false" selection-start-line="111" selection-start-column="51" selection-end-line="111" selection-end-column="51" />
+            <state relative-caret-position="102">
+              <caret line="92" column="25" lean-forward="false" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
               <folding>
                 <element signature="e#44#83#0" expanded="true" />
               </folding>
@@ -108,11 +96,12 @@
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/components/Nav.js" />
         <option value="$PROJECT_DIR$/src/components/App.js" />
-        <option value="$PROJECT_DIR$/src/components/Popular.js" />
         <option value="$PROJECT_DIR$/src/components/Battle.js" />
         <option value="$PROJECT_DIR$/src/components/PlayerPreview.js" />
-        <option value="$PROJECT_DIR$/src/components/Results.js" />
         <option value="$PROJECT_DIR$/src/utils/api.js" />
+        <option value="$PROJECT_DIR$/src/components/Popular.js" />
+        <option value="$PROJECT_DIR$/src/components/Results.js" />
+        <option value="$PROJECT_DIR$/src/components/Loading.js" />
       </list>
     </option>
   </component>
@@ -325,12 +314,12 @@
       <updated>1506514315884</updated>
       <workItem from="1506514317079" duration="46027000" />
       <workItem from="1508681093123" duration="111000" />
-      <workItem from="1508681479317" duration="21588000" />
+      <workItem from="1508681479317" duration="25164000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67726000" />
+    <option name="totallyTimeSpent" value="71302000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="956" extended-state="6" />
@@ -512,17 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Popular.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="122" column="20" lean-forward="true" selection-start-line="122" selection-start-column="20" selection-end-line="122" selection-end-column="34" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#44#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/PlayerPreview.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -541,16 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Results.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-438">
-          <caret line="61" column="83" lean-forward="true" selection-start-line="61" selection-start-column="83" selection-end-line="61" selection-end-column="83" />
-          <folding>
-            <element signature="e#44#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Battle.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -566,6 +534,37 @@
         <state relative-caret-position="222">
           <caret line="54" column="12" lean-forward="false" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Popular.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="124" column="30" lean-forward="false" selection-start-line="124" selection-start-column="30" selection-end-line="124" selection-end-column="30" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#44#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Results.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="92" column="25" lean-forward="false" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+          <folding>
+            <element signature="e#44#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Loading.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding>
+            <element signature="e#44#83#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

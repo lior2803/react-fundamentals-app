@@ -7,6 +7,7 @@ import { battle } from '../utils/api';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import PlayerPreview from './PlayerPreview'
+import Loading from './Loading'
 
 function Profile(props) {
     var info = props.info;
@@ -89,7 +90,7 @@ class Results extends Component {
 
         if (loading) {
             return (
-                <p>Loading...</p>
+                <Loading />
             )
         }
         if (error) {

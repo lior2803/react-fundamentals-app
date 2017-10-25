@@ -4,6 +4,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import { fetchPopularRepos } from '../utils/api'
+import Loading from './Loading'
 //var api = require('../utils/api')
 
 //Upper case is important in 'SelectLanguage'
@@ -121,7 +122,7 @@ class Popular extends Component {
                     updateLanguage={this.updateLanguage}
                 />
                 {!this.state.repos
-                    ? <p>Loading...</p>
+                    ? <Loading/>
                     : <ReposGrid repos={this.state.repos}/>}
             </div>
         )
