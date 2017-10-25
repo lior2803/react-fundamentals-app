@@ -21,12 +21,12 @@ var sec = "ed3e7f558c516b5acecd6cd872ec27680affd2f9";
 var params = "?client_id=" + id + "&client_secret=" + sec;
 
 async function getProfile (username) {
-    var user = await axios.get('https://api.github/users/' + username + params);
+    var user = await axios.get('https://api.github.com/users/' + username + params);
     return user.data;
 }
 
 async function getRepos(username) {
-    var repos = await axios.get('https://api.github/users/' + username + '/repos' + params + '&per_page=100');
+    var repos = await axios.get('https://api.github.com/users/' + username + '/repos' + params + '&per_page=100');
     return repos;
 }
 
@@ -52,7 +52,7 @@ async function getUserData(player) {
     var data = await axios.all([getProfile(player), getRepos(player)]);
     return {
         profile: data[0],
-        scope: calculateScore(data[0], data[1])
+        score: calculateScore(data[0], data[1])
     };
 }
 
@@ -71,7 +71,7 @@ async function fetchPopularRepos (language) {
 async function battle (players) {
     var sortedPlayers = [];
     try {
-        sortedPlayers = await axios.all(players.map(getUserData(players)));
+        sortedPlayers = await axios.all(players.map(getUserData));
     } catch (e) {
         handleError(e);
     }

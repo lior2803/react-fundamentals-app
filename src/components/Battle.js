@@ -4,33 +4,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-function PlayerPreview(props) {
-    return (
-        <div>
-            <div className="column">
-                <img
-                    className="avatar"
-                    alt={'Avatar for ' + props.username}
-                    src={props.avatar}
-                />
-                <h2 className="username">@{props.username}</h2>
-            </div>
-            <button
-                className="reset"
-                onClick={props.onReset.bind(null, props.id)}>
-                Reset
-            </button>
-        </div>
-    )
-}
-
-PlayerPreview.propTypes = {
-    username: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
-    onReset: PropTypes.func.isRequired,
-    id: PropTypes.string.isRequired
-};
+import PlayerPreview from './PlayerPreview'
 
 class PlayerInput extends Component {
     constructor(props) {
@@ -135,10 +109,13 @@ class Battle extends Component {
                     {playerOneImage &&
                         <PlayerPreview
                             username={playerOneName}
-                            avatar={playerOneImage}
-                            onReset={this.handleReset}
-                            id="playerOne"
-                        />
+                            avatar={playerOneImage}>
+                                <button
+                                    className="reset"
+                                    onClick={this.handleReset.bind(null, "playerOne")}>
+                                    Reset
+                                </button>
+                        </PlayerPreview>
                     }
 
                     {!playerTwoName &&
@@ -152,10 +129,13 @@ class Battle extends Component {
                     {playerTwoImage &&
                         <PlayerPreview
                             username={playerTwoName}
-                            avatar={playerTwoImage}
-                            onReset={this.handleReset}
-                            id="playerTwo"
-                        />
+                            avatar={playerTwoImage}>
+                                <button
+                                    className="reset"
+                                    onClick={this.handleReset.bind(null, "playerTwo")}>
+                                    Reset
+                                </button>
+                        </PlayerPreview>
                     }
                 </div>
 
