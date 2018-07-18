@@ -1,14 +1,25 @@
-texts = {
-    accessability_button: 'Open Accesability Menu'
-};
-
-$( document ).ready(function() {
-    $( "body" ).append(`<button id=accessability_button type=button class=float onclick='openAccessabilityMenu()'>${texts.accessability_button}</button>`);
+$(document).ready(function() {
+    $('body').append
+    (`<div class="btn_container">
+        <button 
+            class=float 
+            onclick='openAccessabilityMenu()'>
+        </button>
+    </div>`);
 });
 
-function openAccessabilityMenu()
-{
-    /* hide after we finish : $( "#accessability_button" ).hide(); */
+function openAccessabilityMenu() {
+    document.getElementById("sidebar-container").style.width = "250px";
+}
 
-    alert("Add menu show");
+function closeAccessabilityMenu() {
+    document.getElementById("sidebar-container").style.width = "0";
+}
+
+function increaseFont() {
+
+}
+
+function decreaseFont() {
+
 }
