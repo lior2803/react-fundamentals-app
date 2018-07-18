@@ -6,7 +6,8 @@ exludedElements = ["sidebar-container"]
 
 cookie_stuff =
 {
-    fontIncreaseFactor : 0
+    fontIncreaseFactor : 0,
+    big_mouse: false
 };
 
 $(document).ready(function() {
@@ -61,4 +62,17 @@ function decrease_element_font_size(element)
 {
     let current_size = parseFloat(element.css('font-size'));
     element.css('font-size', current_size * (1.0 / 1.1));
+}
+
+function toggleMouseSize()
+{
+    cookie_stuff.fontIncreaseFactor = !cookie_stuff.fontIncreaseFactor;
+    let body = $( "body" );
+    if (body.hasClass('big_cursor')) {
+        body.removeClass('big_cursor');
+    }
+    else
+    {
+        body.addClass('big_cursor');
+    }
 }

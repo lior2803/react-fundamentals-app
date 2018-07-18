@@ -12,3 +12,7 @@
     height: 66px;
     top: 20px;
 }
+
+.big_cursor {
+    cursor: url('cursor.png'),auto;
+}
