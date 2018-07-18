@@ -10,5 +10,10 @@ function openAccessabilityMenu()
 {
     /* hide after we finish : $( "#accessability_button" ).hide(); */
 
-    alert("Add menu show");
+    //alert("Add menu show");
+    document.getElementById("sidebar-container").style.width = "250px";
+}
+
+function closeAccessabilityMenu() {
+    document.getElementById("sidebar-container").style.width = "0";
 }
