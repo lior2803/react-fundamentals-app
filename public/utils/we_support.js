@@ -2,35 +2,43 @@ texts = {
     accessability_button: 'Open Accesability Menu'
 };
 
-exludedElements = ["accessibility_button"]
+exludedElements = ["sidebar-container"]
 
 cookie_stuff =
 {
     fontIncreaseFactor : 0
 };
 
-$( document ).ready(function() {
-    $( "body" ).append(`<button id=accessibility_button type=button class=float onclick='openAccessabilityMenu()'>${texts.accessability_button}</button>`);
+$(document).ready(function() {
+    $('body').append
+    (`<div class="btn_container">
+        <button 
+            class=float 
+            onclick='openAccessabilityMenu()'>
+        </button>
+    </div>`);
 });
 
-function openAccessabilityMenu()
-{
-    /* hide after we finish : $( "#accessability_button" ).hide(); */
-    increase_site_font_size();
+function openAccessabilityMenu() {
+    $( "#sidebar-container" ).width("250px");
 }
 
-function increase_site_font_size()
+function closeAccessabilityMenu() {
+    $( "#sidebar-container" ).width("0");
+}
+
+function increaseFont()
 {
     if (cookie_stuff.fontIncreaseFactor === 4) return;
     cookie_stuff.fontIncreaseFactor++;
-    iterateElementsFromDom($( "body" ), (element) => increase_font_size(element));
+    iterateElementsFromDom($( "body" ), (element) => increase_element_font_size(element));
 }
 
-function decrease_site_font_size()
+function decreaseFont()
 {
     if (cookie_stuff.fontIncreaseFactor === -4) return;
     cookie_stuff.fontIncreaseFactor--;
-    iterateElementsFromDom($( "body" ), (element) => increase_font_size(element));
+    iterateElementsFromDom($( "body" ), (element) => decrease_element_font_size(element));
 }
 
 function iterateElementsFromDom(root, f) {
@@ -43,14 +51,14 @@ function iterateElementsFromDom(root, f) {
    });
 }
 
-function increase_font_size(element)
+function increase_element_font_size(element)
 {
-    var current_size = parseFloat(element.css('font-size'));
+    let current_size = parseFloat(element.css('font-size'));
     element.css('font-size', current_size * 1.1);
 }
 
-function decrease_font_size(element)
+function decrease_element_font_size(element)
 {
-    var current_size = parseFloat(element.css('font-size'));
+    let current_size = parseFloat(element.css('font-size'));
     element.css('font-size', current_size * (1.0 / 1.1));
 }
