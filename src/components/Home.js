@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
                  <Link className="button" to="./battle">
                      Battle
                  </Link>
+                 <button type="button">Click Me!</button>
              </div>
          )
      }
