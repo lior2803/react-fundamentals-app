@@ -4,7 +4,7 @@ const texts = {
     black_and_white: 'Black and White',
 };
 
-exludedElements = ["sidebar-container"]
+exludedElements = ["sidebar-container"];
 
 cookie_stuff =
 {
