@@ -4,6 +4,13 @@ const texts = {
     black_and_white: 'Black and White',
 };
 
+exludedElements = ["sidebar-container"]
+
+cookie_stuff =
+{
+    fontIncreaseFactor : 0
+};
+
 $(document).ready(function() {
   appendAccessabilityButton();
   appendAccessabilityMenu();
@@ -59,13 +66,41 @@ function appendAccessabilityButton(){
 
 
 function closeAccessabilityMenu() {
-    document.getElementById("sidebar-container").style.width = "0";
+    $( "#sidebar-container" ).width("0");
 }
 
-function increaseFont() {
-
+function increaseFont()
+{
+    if (cookie_stuff.fontIncreaseFactor === 4) return;
+    cookie_stuff.fontIncreaseFactor++;
+    iterateElementsFromDom($( "body" ), (element) => increase_element_font_size(element));
 }
 
-function decreaseFont() {
+function decreaseFont()
+{
+    if (cookie_stuff.fontIncreaseFactor === -4) return;
+    cookie_stuff.fontIncreaseFactor--;
+    iterateElementsFromDom($( "body" ), (element) => decrease_element_font_size(element));
+}
 
+function iterateElementsFromDom(root, f) {
+   root.children().each(function(index, element) {
+       child = $( element );
+       if (exludedElements.includes(child.prop("id")))
+           return;
+       f(child);
+       iterateElementsFromDom(child, f);
+   });
+}
+
+function increase_element_font_size(element)
+{
+    let current_size = parseFloat(element.css('font-size'));
+    element.css('font-size', current_size * 1.1);
+}
+
+function decrease_element_font_size(element)
+{
+    let current_size = parseFloat(element.css('font-size'));
+    element.css('font-size', current_size * (1.0 / 1.1));
 }
