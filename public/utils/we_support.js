@@ -2,13 +2,63 @@ texts = {
     accessability_button: 'Open Accesability Menu'
 };
 
-$( document ).ready(function() {
-    $( "body" ).append(`<button id=accessability_button type=button class=float onclick='openAccessabilityMenu()'>${texts.accessability_button}</button>`);
+exludedElements = ["sidebar-container"]
+
+cookie_stuff =
+{
+    fontIncreaseFactor : 0
+};
+
+$(document).ready(function() {
+    $('body').append
+    (`<div class="btn_container">
+        <button 
+            class=float 
+            onclick='openAccessabilityMenu()'>
+        </button>
+    </div>`);
 });
 
-function openAccessabilityMenu()
-{
-    /* hide after we finish : $( "#accessability_button" ).hide(); */
+function openAccessabilityMenu() {
+    $( "#sidebar-container" ).width("250px");
+}
 
-    alert("Add menu show");
+function closeAccessabilityMenu() {
+    $( "#sidebar-container" ).width("0");
+}
+
+function increaseFont()
+{
+    if (cookie_stuff.fontIncreaseFactor === 4) return;
+    cookie_stuff.fontIncreaseFactor++;
+    iterateElementsFromDom($( "body" ), (element) => increase_element_font_size(element));
+}
+
+function decreaseFont()
+{
+    if (cookie_stuff.fontIncreaseFactor === -4) return;
+    cookie_stuff.fontIncreaseFactor--;
+    iterateElementsFromDom($( "body" ), (element) => decrease_element_font_size(element));
+}
+
+function iterateElementsFromDom(root, f) {
+   root.children().each(function(index, element) {
+       child = $( element );
+       if (exludedElements.includes(child.prop("id")))
+           return;
+       f(child);
+       iterateElementsFromDom(child, f);
+   });
+}
+
+function increase_element_font_size(element)
+{
+    let current_size = parseFloat(element.css('font-size'));
+    element.css('font-size', current_size * 1.1);
+}
+
+function decrease_element_font_size(element)
+{
+    let current_size = parseFloat(element.css('font-size'));
+    element.css('font-size', current_size * (1.0 / 1.1));
 }

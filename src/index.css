@@ -142,3 +142,27 @@ a {
 .reset:hover {
   cursor: pointer;
 }
+
+.st-effect-7.st-container {
+  perspective: 1500px;
+  perspective-origin: 0% 50%;
+}
+
+.st-effect-7 .st-pusher {
+  transform-style: preserve-3d;
+}
+
+.st-effect-7.st-menu-open .st-pusher {
+  transform: translate3d(300px, 0, 0);
+}
+
+.st-effect-7.st-menu {
+  transform: translate3d(-100%, 0, 0) rotateY(-90deg);
+  transform-origin: 100% 50%;
+  transform-style: preserve-3d;
+}
+
+.st-effect-7.st-menu-open .st-effect-7.st-menu {
+  visibility: visible;
+  transform: translate3d(-100%, 0, 0) rotateY(0deg);
+}
