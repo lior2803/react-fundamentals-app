@@ -86,7 +86,7 @@ function appendAccessabilityMenu() {
     </div>
     <button class="collapsible"> ${texts.screen_reader_adj} </button>
     <button class="collapsible"> ${texts.blink_blocking} </button>
-    <button class="collapsible"> ${texts.back_to_default} </button>
+    <button class="collapsible" onClick='backToDefault()'> ${texts.back_to_default} </button>
     </button>`);
 }
 
@@ -226,12 +226,29 @@ function collapsibleMenuButtons() {
         coll[i].addEventListener("click", function () {
             this.classList.toggle("active-collapsible");
             var content = this.nextElementSibling;
-            if (content.style.display === "flex") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "flex";
+            if (content) {
+                if (content.style.display === "flex") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "flex";
+                }
             }
         });
     }
+}
+
+function backToDefault() {
+    while (cookie_stuff.fontIncreaseFactor > 0) {
+        decreaseFont();
+    }
+    while (cookie_stuff.fontIncreaseFactor < 0) {
+        increaseFont();
+    }
+
+    cookie_stuff.big_mouse = true;
+    toggleMouseSize();
+
+    cookie_stuff.contrastStatus = 2;
+    invertElements();
 }
 
