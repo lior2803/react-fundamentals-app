@@ -14,5 +14,9 @@
 }
 
 .big_cursor {
-    cursor: url('cursor.png'),auto;
+    cursor: url('cursor.png'), default;
+}
+
+.big_cursor_hand {
+    cursor: url('hand.png'), default;
 }

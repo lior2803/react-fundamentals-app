@@ -64,15 +64,21 @@ function decrease_element_font_size(element)
     element.css('font-size', current_size * (1.0 / 1.1));
 }
 
-function toggleMouseSize()
+function toggleMouseSize() {
+    cookie_stuff.big_mouse = !cookie_stuff.big_mouse;
+
+    iterateElementsFromDom($("body"), (element) => toggleElementMouseSize(element, cookie_stuff.big_mouse));
+}
+
+//* TODO: Handle different kind of cursors
+function toggleElementMouseSize(domElement, isBigMouse)
 {
-    cookie_stuff.fontIncreaseFactor = !cookie_stuff.fontIncreaseFactor;
-    let body = $( "body" );
-    if (body.hasClass('big_cursor')) {
-        body.removeClass('big_cursor');
+    element = $( domElement );
+    if (isBigMouse) {
+        element.addClass('big_cursor');
     }
     else
     {
-        body.addClass('big_cursor');
+        element.removeClass('big_cursor');
     }
 }
