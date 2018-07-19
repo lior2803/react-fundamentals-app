@@ -1,10 +1,21 @@
-const texts = {
-    increase_font: 'Increase Font',
-    decrease_font: 'Decrease Font',
-    black_and_white: 'Black and White',
-    toggle_mouse_size_big: 'Enlarge Mouse',
-    toggle_mouse_size_small: 'Minimize Mouse',
+const localized_texts = {
+    "en-US": {
+        increase_font: 'Increase Font',
+        decrease_font: 'Decrease Font',
+        black_and_white: 'Black and White',
+        toggle_mouse_size_big: 'Enlarge Mouse',
+        toggle_mouse_size_small: 'Minimize Mouse'
+    },
+    "fr-FR": {
+        increase_font: 'omelet du fromage',
+        decrease_font: 'omelet du fromage!',
+        black_and_white: 'omelet du fromage!!',
+        toggle_mouse_size_big: 'omelet du fromage!!!',
+        toggle_mouse_size_small: 'omelet du fromage!!!!'
+    }
 };
+
+texts = localized_texts["en-US"];
 
 exludedElements = ["sidebar-container"];
 
@@ -15,6 +26,7 @@ cookie_stuff =
     };
 
 $(document).ready(function () {
+    setLocalization();
     appendAccessabilityButton();
     appendAccessabilityMenu();
 });
@@ -130,3 +142,13 @@ function get_mouse_button_text() {
         return texts.toggle_mouse_size_big;
     }
 }
+
+function setLocalization()
+{
+    Object.keys(localized_texts).forEach(function (key) {
+        if ((window.location.href.indexOf("/"+key+"") >= 0) || (window.location.href.indexOf("="+key+"") >= 0)) {
+            texts = localized_texts[key];
+        }
+    });
+}
+
