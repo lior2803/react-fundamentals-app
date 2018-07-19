@@ -6,6 +6,9 @@ const texts = {
   back_to_default: 'Back to Default',
   increase_font: 'Increase Font',
   decrease_font: 'Decrease Font',
+  invert_elements: 'Invert Elements',
+  toggle_mouse_size_small: 'Change Cursor',
+  toggle_mouse_size_big: 'Change Cursor',
   black_and_white: 'Black and White',
 };
 
@@ -32,7 +35,6 @@ function appendAccessabilityMenu() {
   $('body').append(
     `<div id="sidebar-container" class="sidebar-container">
       <a href="javascript:void(0)" class="closebtn" onclick="closeAccessabilityMenu()">&times;</a>
-      <div class="title"> ${texts.title} </div>
       <button class="collapsible"> ${texts.text_changes} </button>
       <div class="buttons_wrapper content">
         <div class="button_container">
@@ -48,21 +50,21 @@ function appendAccessabilityMenu() {
            <label id="mouse_pointer" class="button_text">${get_mouse_button_text()}</label>
         </div>
         <div class="button_container">
-           <button class="icon contrast" onClick='increaseFont()'></button>
-           <label class="button_text">${texts.increase_font}</label>
+           <button class="icon contrast" onClick='invertElements()'></button>
+           <label class="button_text">${texts.invert_elements}</label>
         </div>
         <div class="button_container">
-           <button class="icon increase_font" onClick='increaseFont()'></button>
-           <label class="button_text">${texts.increase_font}</label>
+           <button class="icon contrast" onClick='invertElements()'></button>
+           <label class="button_text">${texts.invert_elements}</label>
         </div>
         <div class="button_container">
-           <button class="icon increase_font" onClick='invertElements()'></button>
+           <button class="icon contrast" onClick='invertElements()'></button>
            <label class="button_text">${texts.invert_elements}</label>
         </div>
     </div>
-    <div class="title"> ${texts.screen_reader_adj} </div>
-    <div class="title"> ${texts.blink_blocking} </div>
-    <button class="title"> ${texts.back_to_default} </button>
+    <button class="collapsible"> ${texts.screen_reader_adj} </button>
+    <button class="collapsible"> ${texts.blink_blocking} </button>
+    <button class="collapsible"> ${texts.back_to_default} </button>
     </button>`);
 }
 
@@ -95,7 +97,7 @@ function decreaseFont() {
 
 function iterateElementsFromDom(root, f) {
     root.children().each(function (index, element) {
-        child = $(element);
+        var child = $(element);
         if (exludedElements.includes(child.prop("id")))
             return;
         f(child);
@@ -135,12 +137,12 @@ function changeContrast(domElement, status) {
 
         case 1:
             element.removeClass('black_contrast');
-            element.addClass('white_contrast')
+            element.addClass('white_contrast');
             break;
 
         case 2:
             element.removeClass('white_contrast');
-            element.addClass('black_contrast')
+            element.addClass('black_contrast');
             break;
     }
 }
@@ -165,7 +167,7 @@ function changeContrast(domElement, status) {
 
     function get_mouse_button_text() {
         if (cookie_stuff.big_mouse) {
-            return texts.toggle_mouse_size_small;
+            return texts.c;
         }
         else {
             return texts.toggle_mouse_size_big;
@@ -181,8 +183,10 @@ function changeContrast(domElement, status) {
           this.classList.toggle("active");
           var content = this.nextElementSibling;
           if (content.style.visibility === "visible") {
+            content.style.height = '0';
             content.style.visibility = "hidden";
           } else {
+            content.style.height = 'auto';
             content.style.visibility = "visible";
           }
         });
