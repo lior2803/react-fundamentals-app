@@ -54,6 +54,18 @@
     top: 20px;
 }
 
+
+.white_contrast {
+    background-color: black !important;
+    color: white !important;
+}
+
+.black_contrast{
+    background-color: white !important;
+    color: black !important;
+}
+
+
 .buttons_wrapper {
     width: inherit;
     display: flex;
