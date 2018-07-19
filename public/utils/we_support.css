@@ -21,12 +21,8 @@
     font-size: 18px;
 }
 
-.active, .collapsible:hover {
+.active-collapsible, .collapsible:hover {
     background-color: gray;
-}
-
-.content {
-    visibility: hidden;
 }
 
 .sidebar-container {
@@ -97,10 +93,13 @@
     color: black !important;
 }
 
+.content {
+    display: none;
+}
 
 .buttons_wrapper {
     width: inherit;
-    display: flex;
+    display: none;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -140,6 +139,16 @@
 
 .contrast {
     background: url('contrast.png') no-repeat center;
+    border: none;
+}
+
+.magnify {
+    background: url('zoom-in.png') no-repeat center;
+    border: none;
+}
+
+.highlight {
+    background: url('highlighter.png') no-repeat center;
     border: none;
 }
 

@@ -12,6 +12,8 @@ const localized_texts = {
         contrast_regular: 'Revert Contrast',
         toggle_mouse_size_small: 'Enlarge Mouse',
         toggle_mouse_size_large: 'Minimize Mouse',
+        magnify: 'Magnify',
+        highlight_header: 'Highlight Header'
     },
     "fr-FR": {
         title: 'Omelet du fromage!',
@@ -74,12 +76,12 @@ function appendAccessabilityMenu() {
            <label id="contrast_button" class="button_text">${get_contrast_button_text()}</label>
         </div>
         <div class="button_container">
-           <button class="icon contrast" onClick='invertElements()'></button>
-           <label class="button_text">${texts.contrast_white}</label>
+           <button class="icon magnify" onClick='magnify()'></button>
+           <label class="button_text">${texts.magnify}</label>
         </div>
         <div class="button_container">
-           <button class="icon contrast" onClick='invertElements()'></button>
-           <label class="button_text">${texts.contrast_white}</label>
+           <button class="icon highlight" onClick='highlight_header()'></button>
+           <label class="button_text">${texts.highlight_header}</label>
         </div>
     </div>
     <button class="collapsible"> ${texts.screen_reader_adj} </button>
@@ -148,6 +150,14 @@ function invertElements() {
     iterateElementsFromDom($("body"), (element) => changeContrast(element, cookie_stuff.contrastStatus));
 }
 
+function magnify() {
+
+}
+
+function highlight_header() {
+
+}
+
 function changeContrast(domElement, status) {
     element = $(domElement);
     switch (status) {
@@ -214,12 +224,12 @@ function collapsibleMenuButtons() {
 
     for (i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function () {
-            this.classList.toggle("active");
+            this.classList.toggle("active-collapsible");
             var content = this.nextElementSibling;
-            if (content.style.visibility === "visible") {
-                content.style.visibility = "hidden";
+            if (content.style.display === "flex") {
+                content.style.display = "none";
             } else {
-                content.style.visibility = "visible";
+                content.style.display = "flex";
             }
         });
     }
