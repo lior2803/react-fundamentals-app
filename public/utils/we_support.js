@@ -23,7 +23,7 @@ exludedElements = ["sidebar-container"];
 
 cookie_stuff =
     {
-        fontIncreaseFactor : 0,
+        fontIncreaseFactor: 0,
         contrastStatus: 0,
         big_mouse: false
     };
@@ -128,7 +128,7 @@ function toggleMouseSize() {
 
 function invertElements() {
     cookie_stuff.contrastStatus = (cookie_stuff.contrastStatus + 1) % 3;
-    iterateElementsFromDom($( "body" ), (element) => changeContrast(element, cookie_stuff.contrastStatus));
+    iterateElementsFromDom($("body"), (element) => changeContrast(element, cookie_stuff.contrastStatus));
 }
 
 function changeContrast(domElement, status) {
@@ -151,37 +151,29 @@ function changeContrast(domElement, status) {
     }
 }
 
-
-    function toggleMouseSize() {
-        cookie_stuff.big_mouse = !cookie_stuff.big_mouse;
-        iterateElementsFromDom($("body"), (element) => toggleElementMouseSize(element, cookie_stuff.big_mouse));
-
-    }
-
 //* TODO: Handle different kind of cursors
-    function toggleElementMouseSize(domElement, isBigMouse) {
-        element = $(domElement);
-        if (isBigMouse) {
-            element.addClass('big_cursor');
-        }
-        else {
-            element.removeClass('big_cursor');
-        }
+function toggleElementMouseSize(domElement, isBigMouse) {
+    element = $(domElement);
+    if (isBigMouse) {
+        element.addClass('big_cursor');
     }
-
-    function get_mouse_button_text() {
-        if (cookie_stuff.big_mouse) {
-            return texts.toggle_mouse_size_small;
-        }
-        else {
-            return texts.toggle_mouse_size_big;
-        }
+    else {
+        element.removeClass('big_cursor');
     }
+}
 
-function setLocalization()
-{
+function get_mouse_button_text() {
+    if (cookie_stuff.big_mouse) {
+        return texts.toggle_mouse_size_small;
+    }
+    else {
+        return texts.toggle_mouse_size_big;
+    }
+}
+
+function setLocalization() {
     Object.keys(localized_texts).forEach(function (key) {
-        if ((window.location.href.indexOf("/"+key+"") >= 0) || (window.location.href.indexOf("="+key+"") >= 0)) {
+        if ((window.location.href.indexOf("/" + key + "") >= 0) || (window.location.href.indexOf("=" + key + "") >= 0)) {
             texts = localized_texts[key];
         }
     });
