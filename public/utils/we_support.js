@@ -7,7 +7,9 @@ const localized_texts = {
         back_to_default: 'Back to Default',
         increase_font: 'Increase Font',
         decrease_font: 'Decrease Font',
-        invert_contrast: 'Invert Contrast',
+        contrast_white: 'White Contrast',
+        contrast_black: 'Black Contrast',
+        contrast_regular: 'Revert Contrast',
         toggle_mouse_size_small: 'Enlarge Mouse',
         toggle_mouse_size_large: 'Minimize Mouse',
     },
@@ -19,7 +21,9 @@ const localized_texts = {
         back_to_default: 'Omelet du fromage!',
         increase_font: 'Omelet du fromage!',
         decrease_font: 'Omelet du fromage!',
-        invert_contrast: 'Omelet du fromage!',
+        contrast_white: 'Omelet du fromage!',
+        contrast_black: 'Omelet du fromage!!',
+        contrast_regular: 'Omelet du fromage!!!',
         toggle_mouse_size_small: 'Omelet du fromage!',
         toggle_mouse_size_large: 'Omelet du fromage!',
     }
@@ -67,15 +71,15 @@ function appendAccessabilityMenu() {
         </div>
         <div class="button_container">
            <button class="icon contrast" onClick='invertElements()'></button>
-           <label class="button_text">${texts.invert_elements}</label>
+           <label id="contrast_button" class="button_text">${get_contrast_button_text()}</label>
         </div>
         <div class="button_container">
            <button class="icon contrast" onClick='invertElements()'></button>
-           <label class="button_text">${texts.invert_elements}</label>
+           <label class="button_text">${texts.contrast_white}</label>
         </div>
         <div class="button_container">
            <button class="icon contrast" onClick='invertElements()'></button>
-           <label class="button_text">${texts.invert_elements}</label>
+           <label class="button_text">${texts.contrast_white}</label>
         </div>
     </div>
     <button class="collapsible"> ${texts.screen_reader_adj} </button>
@@ -140,6 +144,7 @@ function toggleMouseSize() {
 
 function invertElements() {
     cookie_stuff.contrastStatus = (cookie_stuff.contrastStatus + 1) % 3;
+    $("#contrast_button").text(get_contrast_button_text());
     iterateElementsFromDom($("body"), (element) => changeContrast(element, cookie_stuff.contrastStatus));
 }
 
@@ -163,13 +168,6 @@ function changeContrast(domElement, status) {
     }
 }
 
-
-    function toggleMouseSize() {
-        cookie_stuff.big_mouse = !cookie_stuff.big_mouse;
-        iterateElementsFromDom($("body"), (element) => toggleElementMouseSize(element, cookie_stuff.big_mouse));
-
-    }
-
 //* TODO: Handle different kind of cursors
 function toggleElementMouseSize(domElement, isBigMouse) {
     element = $(domElement);
@@ -187,6 +185,18 @@ function get_mouse_button_text() {
     }
     else {
         return texts.toggle_mouse_size_small;
+    }
+}
+
+
+function get_contrast_button_text() {
+    if (cookie_stuff.contrastStatus == 0) {
+        return texts.contrast_black;
+    } else if (cookie_stuff.contrastStatus == 1) {
+        return texts.contrast_white;
+    }
+    else if (cookie_stuff.contrastStatus == 2) {
+        return texts.contrast_regular;
     }
 }
 
