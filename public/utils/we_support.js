@@ -21,21 +21,7 @@ cookie_stuff =
 $(document).ready(function() {
   appendAccessabilityButton();
   appendAccessabilityMenu();
-
-  var coll = document.getElementsByClassName("collapsible");
-  var i;
-
-  for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.visibility === "visible") {
-        content.style.visibility = "hidden";
-      } else {
-        content.style.visibility = "visible";
-      }
-    });
-  }
+  collapsibleMenuButtons();
 });
 
 function openAccessabilityMenu() {
@@ -184,5 +170,22 @@ function changeContrast(domElement, status) {
         else {
             return texts.toggle_mouse_size_big;
         }
+    }
+
+    function collapsibleMenuButtons(){
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.visibility === "visible") {
+            content.style.visibility = "hidden";
+          } else {
+            content.style.visibility = "visible";
+          }
+        });
+      }
     }
 
