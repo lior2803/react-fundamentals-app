@@ -112,6 +112,7 @@ function decrease_element_font_size(element) {
 function toggleMouseSize() {
     cookie_stuff.big_mouse = !cookie_stuff.big_mouse;
     $("#mouse_pointer").text(get_mouse_button_text());
+    iterateElementsFromDom($("body"), (element) => toggleElementMouseSize(element, cookie_stuff.big_mouse));
 }
 
 function invertElements() {
@@ -142,6 +143,7 @@ function changeContrast(domElement, status) {
     function toggleMouseSize() {
         cookie_stuff.big_mouse = !cookie_stuff.big_mouse;
         iterateElementsFromDom($("body"), (element) => toggleElementMouseSize(element, cookie_stuff.big_mouse));
+
     }
 
 //* TODO: Handle different kind of cursors
