@@ -4,13 +4,15 @@ const texts = {
     black_and_white: 'Black and White',
     toggle_mouse_size_big: 'Enlarge Mouse',
     toggle_mouse_size_small: 'Minimize Mouse',
+    invert_elements: 'Change Contrast',
 };
 
 exludedElements = ["sidebar-container"];
 
 cookie_stuff =
     {
-        fontIncreaseFactor: 0,
+        fontIncreaseFactor : 0,
+        contrastStatus: 0,
         big_mouse: false
     };
 
@@ -49,8 +51,8 @@ function appendAccessabilityMenu() {
            <label class="button_text">${texts.increase_font}</label>
         </div>
         <div class="button_container">
-           <button class="icon increase_font" onClick='increaseFont()'></button>
-           <label class="button_text">${texts.increase_font}</label>
+           <button class="icon increase_font" onClick='invertElements()'></button>
+           <label class="button_text">${texts.invert_elements}</label>
         </div>
          
     </div>
@@ -111,22 +113,55 @@ function toggleMouseSize() {
     iterateElementsFromDom($("body"), (element) => toggleElementMouseSize(element, cookie_stuff.big_mouse));
 }
 
-//* TODO: Handle different kind of cursors
-function toggleElementMouseSize(domElement, isBigMouse) {
+function invertElements() {
+    cookie_stuff.contrastStatus = (cookie_stuff.contrastStatus + 1) % 3;
+    iterateElementsFromDom($( "body" ), (element) => changeContrast(element, cookie_stuff.contrastStatus));
+}
+
+function changeContrast(domElement, status) {
     element = $(domElement);
-    if (isBigMouse) {
-        element.addClass('big_cursor');
-    }
-    else {
-        element.removeClass('big_cursor');
+    switch (status) {
+        case 0:
+            element.removeClass('white_contrast');
+            element.removeClass('black_contrast');
+            break;
+
+        case 1:
+            element.removeClass('black_contrast');
+            element.addClass('white_contrast')
+            break;
+
+        case 2:
+            element.removeClass('white_contrast');
+            element.addClass('black_contrast')
+            break;
     }
 }
 
-function get_mouse_button_text() {
-    if (cookie_stuff.big_mouse) {
-        return texts.toggle_mouse_size_small;
+
+    function toggleMouseSize() {
+        cookie_stuff.big_mouse = !cookie_stuff.big_mouse;
+        iterateElementsFromDom($("body"), (element) => toggleElementMouseSize(element, cookie_stuff.big_mouse));
+
     }
-    else {
-        return texts.toggle_mouse_size_big;
+
+//* TODO: Handle different kind of cursors
+    function toggleElementMouseSize(domElement, isBigMouse) {
+        element = $(domElement);
+        if (isBigMouse) {
+            element.addClass('big_cursor');
+        }
+        else {
+            element.removeClass('big_cursor');
+        }
     }
-}
+
+    function get_mouse_button_text() {
+        if (cookie_stuff.big_mouse) {
+            return texts.toggle_mouse_size_small;
+        }
+        else {
+            return texts.toggle_mouse_size_big;
+        }
+    }
+
