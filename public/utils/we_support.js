@@ -2,6 +2,8 @@ const texts = {
     increase_font: 'Increase Font',
     decrease_font: 'Decrease Font',
     black_and_white: 'Black and White',
+    toggle_mouse_size_big: 'Enlarge Mouse',
+    toggle_mouse_size_small: 'Minimize Mouse',
 };
 
 exludedElements = ["sidebar-container"];
@@ -13,7 +15,8 @@ cookie_stuff =
         big_mouse: false
     };
 
-$(document).ready(function() {
+
+$(document).ready(function () {
     appendAccessabilityButton();
     appendAccessabilityMenu();
 });
@@ -36,8 +39,8 @@ function appendAccessabilityMenu() {
            <label class="button_text">${texts.increase_font}</label>
         </div>
         <div class="button_container">
-           <button class="icon increase_font" onClick='increaseFont()'></button>
-           <label class="button_text">${texts.increase_font}</label>
+           <button class="icon increase_font" onClick='toggleMouseSize()'></button>
+           <label id="mouse_pointer" class="button_text">${get_mouse_button_text()}</label>
         </div>
         <div class="button_container">
            <button class="icon increase_font" onClick='increaseFont()'></button>
@@ -56,7 +59,8 @@ function appendAccessabilityMenu() {
     </div>`);
 }
 
-function appendAccessabilityButton(){
+
+function appendAccessabilityButton() {
     $('body').append
     (`<div class="btn_container">
         <button 
@@ -68,26 +72,25 @@ function appendAccessabilityButton(){
 
 
 function closeAccessabilityMenu() {
-    $( "#sidebar-container" ).width("0");
+    $("#sidebar-container").width("0");
 }
 
-function increaseFont()
-{
+function increaseFont() {
     if (cookie_stuff.fontIncreaseFactor === 4) return;
     cookie_stuff.fontIncreaseFactor++;
-    iterateElementsFromDom($( "body" ), (element) => increase_element_font_size(element));
+    iterateElementsFromDom($("body"), (element) => increase_element_font_size(element));
 }
 
-function decreaseFont()
-{
+function decreaseFont() {
     if (cookie_stuff.fontIncreaseFactor === -4) return;
     cookie_stuff.fontIncreaseFactor--;
-    iterateElementsFromDom($( "body" ), (element) => decrease_element_font_size(element));
+    iterateElementsFromDom($("body"), (element) => decrease_element_font_size(element));
 }
 
 function iterateElementsFromDom(root, f) {
-    root.children().each(function(index, element) {
-        child = $( element );
+
+    root.children().each(function (index, element) {
+        child = $(element);
         if (exludedElements.includes(child.prop("id")))
             return;
         f(child);
@@ -95,18 +98,21 @@ function iterateElementsFromDom(root, f) {
     });
 }
 
-function increase_element_font_size(element)
-{
+function increase_element_font_size(element) {
     let current_size = parseFloat(element.css('font-size'));
     element.css('font-size', current_size * 1.1);
 }
 
-function decrease_element_font_size(element)
-{
+function decrease_element_font_size(element) {
     let current_size = parseFloat(element.css('font-size'));
     element.css('font-size', current_size * (1.0 / 1.1));
 }
 
+
+function toggleMouseSize() {
+    cookie_stuff.big_mouse = !cookie_stuff.big_mouse;
+    $("#mouse_pointer").text(get_mouse_button_text());
+}
 
 function invertElements() {
     cookie_stuff.contrastStatus = (cookie_stuff.contrastStatus + 1) % 3;
@@ -146,6 +152,16 @@ function changeContrast(domElement, status) {
         }
         else {
             element.removeClass('big_cursor');
+        }
+
+    }
+
+    function get_mouse_button_text() {
+        if (cookie_stuff.big_mouse) {
+            return texts.toggle_mouse_size_small;
+        }
+        else {
+            return texts.toggle_mouse_size_big;
         }
     }
 }
