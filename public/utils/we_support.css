@@ -88,3 +88,7 @@
     width: 90%;
     color: black;
 }
+
+.big_cursor {
+    cursor: url("cursor.png"), default;
+}
