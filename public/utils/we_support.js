@@ -1,30 +1,46 @@
-const texts = {
-  title: 'We-Accessible',
-  screen_reader_adj: 'Screen Reader Adjustment',
-  text_changes: 'Text Changes',
-  blink_blocking: 'Blink Blocking',
-  back_to_default: 'Back to Default',
-  increase_font: 'Increase Font',
-  decrease_font: 'Decrease Font',
-  invert_elements: 'Invert Elements',
-  toggle_mouse_size_small: 'Change Cursor',
-  toggle_mouse_size_big: 'Change Cursor',
-  black_and_white: 'Black and White',
+const localized_texts = {
+    "en-US": {
+        title: 'We-Accessible',
+        screen_reader_adj: 'Screen Reader Adjustment',
+        text_changes: 'Text Changes',
+        blink_blocking: 'Blink Blocking',
+        back_to_default: 'Back to Default',
+        increase_font: 'Increase Font',
+        decrease_font: 'Decrease Font',
+        invert_contrast: 'Invert Contrast',
+        toggle_mouse_size_small: 'Enlarge Mouse',
+        toggle_mouse_size_large: 'Minimize Mouse',
+    },
+    "fr-FR": {
+        title: 'Omelet du fromage!',
+        screen_reader_adj: 'Omelet du fromage!',
+        text_changes: 'Omelet du fromage!',
+        blink_blocking: 'Omelet du fromage!',
+        back_to_default: 'Omelet du fromage!',
+        increase_font: 'Omelet du fromage!',
+        decrease_font: 'Omelet du fromage!',
+        invert_contrast: 'Omelet du fromage!',
+        toggle_mouse_size_small: 'Omelet du fromage!',
+        toggle_mouse_size_large: 'Omelet du fromage!',
+    }
 };
+
+texts = localized_texts["en-US"];
 
 exludedElements = ["sidebar-container"];
 
 cookie_stuff =
     {
-        fontIncreaseFactor : 0,
+        fontIncreaseFactor: 0,
         contrastStatus: 0,
         big_mouse: false
     };
 
-$(document).ready(function() {
-  appendAccessabilityButton();
-  appendAccessabilityMenu();
-  collapsibleMenuButtons();
+$(document).ready(function () {
+    setLocalization();
+    appendAccessabilityButton();
+    appendAccessabilityMenu();
+    collapsibleMenuButtons();
 });
 
 function openAccessabilityMenu() {
@@ -32,8 +48,8 @@ function openAccessabilityMenu() {
 }
 
 function appendAccessabilityMenu() {
-  $('body').append(
-    `<div id="sidebar-container" class="sidebar-container">
+    $('body').append(
+        `<div id="sidebar-container" class="sidebar-container">
       <a href="javascript:void(0)" class="closebtn" onclick="closeAccessabilityMenu()">&times;</a>
       <button class="collapsible"> ${texts.text_changes} </button>
       <div class="buttons_wrapper content">
@@ -124,7 +140,7 @@ function toggleMouseSize() {
 
 function invertElements() {
     cookie_stuff.contrastStatus = (cookie_stuff.contrastStatus + 1) % 3;
-    iterateElementsFromDom($( "body" ), (element) => changeContrast(element, cookie_stuff.contrastStatus));
+    iterateElementsFromDom($("body"), (element) => changeContrast(element, cookie_stuff.contrastStatus));
 }
 
 function changeContrast(domElement, status) {
@@ -155,41 +171,47 @@ function changeContrast(domElement, status) {
     }
 
 //* TODO: Handle different kind of cursors
-    function toggleElementMouseSize(domElement, isBigMouse) {
-        element = $(domElement);
-        if (isBigMouse) {
-            element.addClass('big_cursor');
-        }
-        else {
-            element.removeClass('big_cursor');
-        }
+function toggleElementMouseSize(domElement, isBigMouse) {
+    element = $(domElement);
+    if (isBigMouse) {
+        element.addClass('big_cursor');
     }
-
-    function get_mouse_button_text() {
-        if (cookie_stuff.big_mouse) {
-            return texts.c;
-        }
-        else {
-            return texts.toggle_mouse_size_big;
-        }
+    else {
+        element.removeClass('big_cursor');
     }
+}
 
-    function collapsibleMenuButtons(){
-      var coll = document.getElementsByClassName("collapsible");
-      var i;
+function get_mouse_button_text() {
+    if (cookie_stuff.big_mouse) {
+        return texts.toggle_mouse_size_large;
+    }
+    else {
+        return texts.toggle_mouse_size_small;
+    }
+}
 
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-          if (content.style.visibility === "visible") {
-            content.style.height = '0';
-            content.style.visibility = "hidden";
-          } else {
-            content.style.height = 'auto';
-            content.style.visibility = "visible";
-          }
+function setLocalization() {
+    Object.keys(localized_texts).forEach(function (key) {
+        if ((window.location.href.indexOf("/" + key + "") >= 0) || (window.location.href.indexOf("=" + key + "") >= 0)) {
+            texts = localized_texts[key];
+        }
+    });
+}
+
+function collapsibleMenuButtons() {
+    let coll = document.getElementsByClassName("collapsible");
+    let i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.visibility === "visible") {
+                content.style.visibility = "hidden";
+            } else {
+                content.style.visibility = "visible";
+            }
         });
-      }
     }
+}
 
