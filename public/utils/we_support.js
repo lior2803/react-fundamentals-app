@@ -1,19 +1,27 @@
 const localized_texts = {
     "en-US": {
+        title: 'We-Accessible',
+        screen_reader_adj: 'Screen Reader Adjustment',
+        text_changes: 'Text Changes',
+        blink_blocking: 'Blink Blocking',
+        back_to_default: 'Back to Default',
         increase_font: 'Increase Font',
         decrease_font: 'Decrease Font',
-        black_and_white: 'Black and White',
-        toggle_mouse_size_big: 'Enlarge Mouse',
-        toggle_mouse_size_small: 'Minimize Mouse',
-        invert_elements: 'Change Contrast',
+        invert_contrast: 'Invert Contrast',
+        toggle_mouse_size_small: 'Enlarge Mouse',
+        toggle_mouse_size_large: 'Minimize Mouse',
     },
     "fr-FR": {
-        increase_font: 'omelet du fromage',
-        decrease_font: 'omelet du fromage!',
-        black_and_white: 'omelet du fromage!!',
-        toggle_mouse_size_big: 'omelet du fromage!!!',
-        toggle_mouse_size_small: 'omelet du fromage!!!!',
-        invert_elements: 'omelet du fromage',
+        title: 'Omelet du fromage!',
+        screen_reader_adj: 'Omelet du fromage!',
+        text_changes: 'Omelet du fromage!',
+        blink_blocking: 'Omelet du fromage!',
+        back_to_default: 'Omelet du fromage!',
+        increase_font: 'Omelet du fromage!',
+        decrease_font: 'Omelet du fromage!',
+        invert_contrast: 'Omelet du fromage!',
+        toggle_mouse_size_small: 'Omelet du fromage!',
+        toggle_mouse_size_large: 'Omelet du fromage!',
     }
 };
 
@@ -32,6 +40,7 @@ $(document).ready(function () {
     setLocalization();
     appendAccessabilityButton();
     appendAccessabilityMenu();
+    collapsibleMenuButtons();
 });
 
 function openAccessabilityMenu() {
@@ -42,34 +51,38 @@ function appendAccessabilityMenu() {
     $('body').append(
         `<div id="sidebar-container" class="sidebar-container">
       <a href="javascript:void(0)" class="closebtn" onclick="closeAccessabilityMenu()">&times;</a>
-      <div class="buttons_wrapper">
+      <div class="title"> ${texts.title} </div>
+      <button class="collapsible"> ${texts.text_changes} </button>
+      <div class="buttons_wrapper content">
         <div class="button_container">
            <button class="icon increase_font" onClick='increaseFont()'></button>
            <label class="button_text">${texts.increase_font}</label>
         </div>
         <div class="button_container">
            <button class="icon decrease_font" onClick='decreaseFont()'></button>
-           <label class="button_text">${texts.increase_font}</label>
+           <label class="button_text">${texts.decrease_font}</label>
         </div>
         <div class="button_container">
-           <button class="icon increase_font" onClick='toggleMouseSize()'></button>
+           <button class="icon toggle_cursor" onClick='toggleMouseSize()'></button>
            <label id="mouse_pointer" class="button_text">${get_mouse_button_text()}</label>
         </div>
         <div class="button_container">
-           <button class="icon increase_font" onClick='increaseFont()'></button>
-           <label class="button_text">${texts.increase_font}</label>
+           <button class="icon contrast" onClick='invertElements()'></button>
+           <label class="button_text">${texts.invert_contrast}</label>
         </div>
         <div class="button_container">
            <button class="icon increase_font" onClick='increaseFont()'></button>
            <label class="button_text">${texts.increase_font}</label>
         </div>
         <div class="button_container">
-           <button class="icon increase_font" onClick='invertElements()'></button>
-           <label class="button_text">${texts.invert_elements}</label>
+           <button class="icon decrease_font" onClick='decreaseFont()'></button>
+           <label class="button_text">${texts.decrease_font}</label>
         </div>
-         
     </div>
-    </div>`);
+    <div class="title"> ${texts.screen_reader_adj} </div>
+    <div class="title"> ${texts.blink_blocking} </div>
+    <button class="title"> ${texts.back_to_default} </button>
+    </button>`);
 }
 
 function appendAccessabilityButton() {
@@ -164,10 +177,10 @@ function toggleElementMouseSize(domElement, isBigMouse) {
 
 function get_mouse_button_text() {
     if (cookie_stuff.big_mouse) {
-        return texts.toggle_mouse_size_small;
+        return texts.toggle_mouse_size_large;
     }
     else {
-        return texts.toggle_mouse_size_big;
+        return texts.toggle_mouse_size_small;
     }
 }
 
@@ -177,5 +190,22 @@ function setLocalization() {
             texts = localized_texts[key];
         }
     });
+}
+
+function collapsibleMenuButtons() {
+    let coll = document.getElementsByClassName("collapsible");
+    let i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.visibility === "visible") {
+                content.style.visibility = "hidden";
+            } else {
+                content.style.visibility = "visible";
+            }
+        });
+    }
 }
 
